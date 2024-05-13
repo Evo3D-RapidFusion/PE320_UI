@@ -1181,8 +1181,8 @@ function initializeDefaultHeatingProfiles() {
       Material: "Airtech PETG-GF",
       Top: 150,
       Middle: 160,
-      Bottom: 180,
-      Nozzle: 180,
+      Bottom: 200,
+      Nozzle: 205,
       Bed: 80,
     },
     {
