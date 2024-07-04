@@ -1163,7 +1163,7 @@ function initializeDefaultHeatingProfiles() {
     },
     {
       Material: "Airtech PP-GF",
-      Top: 180,
+      Top: 150,
       Middle: 200,
       Bottom: 200,
       Nozzle: 210,
