@@ -117,7 +117,7 @@ function updateObjectModel() {
                 : outputData[index].replace(/^\w/, (c) => c.toUpperCase()) +
                   endText;
           } else {
-            if (outputData[index] === "-273.1") {
+            if (Math.abs(outputData[index] + 273.1) < 0.0001) {
               element.textContent = "0" + endText;
             } else {
               element.textContent = outputData[index] + endText;
