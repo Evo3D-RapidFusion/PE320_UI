@@ -97,6 +97,10 @@ function updateObjectModel() {
             return outputData;
           case "allHeaters":
             return outputData;
+          case "activePreheatAllHeaters":
+            elementsWithClass = document.querySelectorAll(targetClass);
+            outputData = updateText(elementsWithClass, outputData, endText);
+            return outputData;
           default: {
             console.error("Invalid objectDescription:", objectDescription);
             return null;
@@ -147,6 +151,29 @@ function updateObjectModel() {
         configuredChamberHeaters,
         "°C",
       );
+
+      // update Extruder Active Temp
+      const extruderHeaterActiveTemps = updateUIdata(
+        "activePreheatAllHeaters",
+        data.heat.heaters,
+        "active",
+        ".user-input-temp.active",
+        configuredExtruderHeaters,
+        configuredBedHeaters,
+        configuredChamberHeaters
+      );
+
+      // update Extruder Preheat (Standby) Temp
+      const extruderHeaterPreheatTemps = updateUIdata(
+        "activePreheatAllHeaters",
+        data.heat.heaters,
+        "standby",
+        ".user-input-temp.preheat",
+        configuredExtruderHeaters,
+        configuredBedHeaters,
+        configuredChamberHeaters
+      );
+
       const extruderHeaterStates = updateUIdata(
         "extruderHeaters",
         data.heat.heaters,
@@ -167,6 +194,29 @@ function updateObjectModel() {
         configuredChamberHeaters,
         "°C",
       );
+
+      // update Bed Active Temp
+      const bedHeaterActiveTemps = updateUIdata(
+        "activePreheatAllHeaters",
+        data.heat.heaters,
+        "active",
+        ".user-input-temp.active",
+        configuredExtruderHeaters,
+        configuredBedHeaters,
+        configuredChamberHeaters
+      );
+
+      // update Bed Preheat (Standby) Temp
+      const bedHeaterPreheatTemps = updateUIdata(
+        "activePreheatAllHeaters",
+        data.heat.heaters,
+        "standby",
+        ".user-input-temp.preheat",
+        configuredExtruderHeaters,
+        configuredBedHeaters,
+        configuredChamberHeaters
+      );
+
       const bedHeaterStates = updateUIdata(
         "bedHeaters",
         data.heat.heaters,
@@ -1155,15 +1205,15 @@ function initializeDefaultHeatingProfiles() {
   defaultHeatingProfiles = [
     {
       Material: "Airtech PC-GF",
-      Top: 180,
-      Middle: 250,
-      Bottom: 260,
+      Top: 110,
+      Middle: 200,
+      Bottom: 250,
       Nozzle: 270,
       Bed: 100,
     },
     {
       Material: "Airtech PP-GF",
-      Top: 150,
+      Top: 110,
       Middle: 200,
       Bottom: 200,
       Nozzle: 210,
@@ -1179,18 +1229,18 @@ function initializeDefaultHeatingProfiles() {
     },
     {
       Material: "Airtech PETG-GF",
-      Top: 150,
-      Middle: 160,
-      Bottom: 200,
+      Top: 105,
+      Middle: 140,
+      Bottom: 160,
       Nozzle: 205,
-      Bed: 80,
+      Bed: 50,
     },
     {
-      Material: "Default PETG",
-      Top: 80,
-      Middle: 160,
-      Bottom: 170,
-      Nozzle: 180,
+      Material: "HDPE",
+      Top: 110,
+      Middle: 190,
+      Bottom: 220,
+      Nozzle: 240,
       Bed: 80,
     },
     {
@@ -1199,12 +1249,12 @@ function initializeDefaultHeatingProfiles() {
       Middle: 140,
       Bottom: 150,
       Nozzle: 160,
-      Bed: 50,
+      Bed: 40,
     },
   ];
   localStorage.setItem(
     "HeatingProfiles",
-    JSON.stringify(defaultHeatingProfiles),
+    JSON.stringify(defaultHeatingProfiles)
   ); // save default heating profiles to localStorage
   return defaultHeatingProfiles;
 }
