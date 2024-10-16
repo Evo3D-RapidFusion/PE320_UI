@@ -117,7 +117,11 @@ function updateObjectModel() {
                 : outputData[index].replace(/^\w/, (c) => c.toUpperCase()) +
                   endText;
           } else {
-            element.textContent = outputData[index] + endText;
+            if (outputData[index] === "-273.1") {
+              element.textContent = "0" + endText;
+            } else {
+              element.textContent = outputData[index] + endText;
+            }
           }
         });
         return outputData; // Output extracted values
